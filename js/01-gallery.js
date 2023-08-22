@@ -31,12 +31,14 @@ galleryList.addEventListener('click', e => {
 
     instance.show();
     
-    document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    instance.close();
-    document.rem('keydown')
-  }
-});
+    const eventListener = e => {
+      if (e.key === 'Escape') {
+        instance.close();
+        document.removeEventListener('keydown', eventListener);
+      }
+    };
+
+    document.addEventListener('keydown', eventListener);
   }
 });
 
